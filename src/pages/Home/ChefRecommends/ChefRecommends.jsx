@@ -20,7 +20,7 @@ const ChefRecommends = () => {
               <h2 className="card-title text-[19px] text-[#594A65] uppercase">Apple Strudel</h2>
               <p className="text-[#BABBBC]">Apples, Vanilla Ice Cream, Nuts, Roast Duck Breast</p>
               <div className="card-actions">
-                <button className="btn btn-outline border-0 border-b-4 mt-3 bg-[#E8E8E8] hover:bg-[#E8E8E8] text-[#BB8506] hover:text-[#BB8506]">Add To Card</button>
+                <button className="btn btn-outline border-0 border-b-4 hover:border-[#BB8506] mt-3 bg-[#E8E8E8] hover:bg-[#E8E8E8] text-[#BB8506] hover:text-[#BB8506]">Add To Card</button>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ const ChefRecommends = () => {
               <h2 className="card-title text-[19px] text-[#594A65] uppercase">Caeser Salad</h2>
               <p className="text-[#BABBBC]">Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets</p>
               <div className="card-actions">
-                <button className="btn btn-outline border-0 border-b-4 mt-3 bg-[#E8E8E8] hover:bg-[#E8E8E8] text-[#BB8506] hover:text-[#BB8506]">Add To Card</button>
+                <button className="btn btn-outline border-0 border-b-4 hover:border-[#BB8506] mt-3 bg-[#E8E8E8] hover:bg-[#E8E8E8] text-[#BB8506] hover:text-[#BB8506]">Add To Card</button>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@ const ChefRecommends = () => {
               <h2 className="card-title text-[19px] text-[#594A65] uppercase">Cherry Pie</h2>
               <p className="text-[#BABBBC]">Cherries, Dough, White Sugar, Cheese, Vanilla Ice Cream</p>
               <div className="card-actions">
-                <button className="btn btn-outline border-0 border-b-4 mt-3 bg-[#E8E8E8] hover:bg-[#E8E8E8] text-[#BB8506] hover:text-[#BB8506]">Add To Card</button>
+                <button className="btn btn-outline border-0 border-b-4 hover:border-[#BB8506] mt-3 bg-[#E8E8E8] hover:bg-[#E8E8E8] text-[#BB8506] hover:text-[#BB8506]">Add To Card</button>
               </div>
             </div>
           </div>
