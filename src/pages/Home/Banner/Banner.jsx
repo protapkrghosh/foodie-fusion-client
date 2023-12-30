@@ -9,7 +9,7 @@ import img6 from "../../../assets/home/06.png"
 
 const Banner = () => {
   return (
-    <Carousel autoPlay infiniteLoop className="text-center mb-16">
+    <Carousel autoPlay infiniteLoop className="text-center">
       <div>
         <img src={img6} alt="Slider image" />
       </div>
