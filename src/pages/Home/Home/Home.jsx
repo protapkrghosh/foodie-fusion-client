@@ -5,6 +5,7 @@ import PopularMenu from "../PopularMenu/PopularMenu";
 import bgImage from "../../../assets/others/Rectangle9.png"
 import CallUs from "../CallUs/CallUs";
 import Featured from "../Featured/Featured";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
   const bgImageStyle = {
@@ -23,6 +24,7 @@ const Home = () => {
       <PopularMenu />
       <CallUs />
       <Featured />
+      <Testimonials />
     </div>
   );
 };
