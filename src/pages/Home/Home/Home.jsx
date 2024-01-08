@@ -23,7 +23,7 @@ const Home = () => {
       <Banner />
       <Category />
       <ChefService
-        sectionBg={bgImageStyle}
+        sectionBg={bgImage}
         title={'Foodie Fusion'}
         content={'Consectetur adipisicing elit. Doloremque assumenda reprehenderit illum voluptatibus rem facere. Ex fugiat nam sit at hic dolores recusandae consequuntur deserunt, harum veritatis aspernatur quibusdam temporibus.'}
       />
