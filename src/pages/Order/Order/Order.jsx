@@ -3,6 +3,7 @@ import orderCoverImg from '../../../assets/shop/banner2.jpg'
 import Cover from '../../Shared/Cover/Cover';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useMenu } from '../../../hooks/useMenu';
+import FoodCard from '../../../components/FoodCard/FoodCard';
 // import 'react-tabs/style/react-tabs.css';
 
 const Order = () => {
@@ -18,17 +19,26 @@ const Order = () => {
     <div>
       <Cover img={orderCoverImg} title={'Our Shop'} contents={'Would you like to try a dish?'} />
       
-      <div>
+      <div className='flex justify-center my-20'>
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList className='flex gap-5'>
-            <Tab className=''>Salads</Tab>
-            <Tab className=''>Pizzas</Tab>
-            <Tab className=''>Soups</Tab>
-            <Tab className=''>Desserts</Tab>
-            <Tab className=''>Drinks</Tab>
+          <TabList className='flex justify-center gap-5 mb-8 font-semibold uppercase'>
+            <Tab className='cursor-pointer'>Salads</Tab>
+            <Tab className='cursor-pointer'>Pizzas</Tab>
+            <Tab className='cursor-pointer'>Soups</Tab>
+            <Tab className='cursor-pointer'>Desserts</Tab>
+            <Tab className='cursor-pointer'>Drinks</Tab>
           </TabList>
-          <TabPanel>content 1</TabPanel>
-          <TabPanel>content 2</TabPanel>
+
+          <TabPanel>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10'>
+              {
+                salad.map(item => <FoodCard
+                  key={item._id}
+                  item={item}
+                />)
+              }
+            </div>
+          </TabPanel>
         </Tabs>
       </div>
     </div>
