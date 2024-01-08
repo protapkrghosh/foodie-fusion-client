@@ -3,7 +3,7 @@ import orderCoverImg from '../../../assets/shop/banner2.jpg'
 import Cover from '../../Shared/Cover/Cover';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useMenu } from '../../../hooks/useMenu';
-import FoodCard from '../../../components/FoodCard/FoodCard';
+import OrderTabs from '../OrderTabs/OrderTabs';
 // import 'react-tabs/style/react-tabs.css';
 
 const Order = () => {
@@ -29,16 +29,11 @@ const Order = () => {
             <Tab className='cursor-pointer'>Drinks</Tab>
           </TabList>
 
-          <TabPanel>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-8 gap-y-10'>
-              {
-                salad.map(item => <FoodCard
-                  key={item._id}
-                  item={item}
-                />)
-              }
-            </div>
-          </TabPanel>
+          <TabPanel><OrderTabs items={salad}/></TabPanel>
+          <TabPanel><OrderTabs items={pizza}/></TabPanel>
+          <TabPanel><OrderTabs items={soup}/></TabPanel>
+          <TabPanel><OrderTabs items={desserts}/></TabPanel>
+          <TabPanel><OrderTabs items={drinks}/></TabPanel>
         </Tabs>
       </div>
     </div>
