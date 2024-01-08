@@ -7,6 +7,10 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import MenuCategory from '../MenuCategory/MenuCategory';
 
 const Menu = () => {
+  const dessertBg = {
+    backgroundImage: `url(${dessertImg})`,
+  };
+
   const [menu] = useMenu();
   const offered = menu.filter(item => item.category === "offered");
   const desserts = menu.filter(item => item.category === "dessert");
@@ -29,11 +33,13 @@ const Menu = () => {
       
       {/* Dessert menu items */}
       <MenuCategory
-        img={dessertImg}
+        // img={dessertImg}
+        sectionBg={dessertBg}
         items={desserts}
         title='Dessert'
-        subtitle='THE INDUSTRY’S STANDARD DUMMY TEXT EVER SINCE THE 1500S, WHEN AN UNKNOWN PRINTER TOOK A GALLEY OF TYPE AND SCRAMBLED IT TO MAKE A TYPE SPECIMEN BOOK.'
+        content='THE INDUSTRY’S STANDARD DUMMY TEXT EVER SINCE THE 1500S, WHEN AN UNKNOWN PRINTER TOOK A GALLEY OF TYPE AND SCRAMBLED IT TO MAKE A TYPE SPECIMEN BOOK.'
       />
+      
     </div>
   );
 };
