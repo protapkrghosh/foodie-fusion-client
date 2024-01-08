@@ -20,7 +20,7 @@ const Menu = () => {
   return (
     <div>
       <Helmet>
-        <title>Menu - Foodie Fusion Restaurant</title>
+        <title>Menu | Foodie Fusion Restaurant</title>
       </Helmet>
 
       {/*Main Banner */}
