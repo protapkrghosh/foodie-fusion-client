@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuItems from '../../Shared/MenuItems/MenuItems';
 import ChefService from '../../../components/ChefService/ChefService';
+import { Link } from 'react-router-dom';
 
 const MenuCategory = ({ items, title, content, sectionBg }) => {
   
@@ -19,7 +20,7 @@ const MenuCategory = ({ items, title, content, sectionBg }) => {
         </div>
 
         <div className="flex justify-center mt-2">
-          <button className="btn btn-outline border-0 border-b-4 text-black mt-8 uppercase">Order your favorite food</button>
+          <Link to={`/order/${title}`} className="btn btn-outline border-0 border-b-4 text-black mt-8 uppercase">Order your favorite food</Link>
         </div>
       </div>
     </div>

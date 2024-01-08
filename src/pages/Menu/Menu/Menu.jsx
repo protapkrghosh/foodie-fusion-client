@@ -34,7 +34,7 @@ const Menu = () => {
       <MenuCategory
         sectionBg={dessertImg}
         items={desserts}
-        title='Dessert'
+        title='dessert'
         content='THE INDUSTRY’S STANDARD DUMMY TEXT EVER SINCE THE 1500S, WHEN AN UNKNOWN PRINTER TOOK A GALLEY OF TYPE AND SCRAMBLED IT TO MAKE A TYPE SPECIMEN BOOK'
       />
 
@@ -42,7 +42,7 @@ const Menu = () => {
       <MenuCategory
         sectionBg={pizzaImg}
         items={pizza}
-        title='Pizza'
+        title='pizza'
         content='Officia beatae odit accusamus reiciendis quo voluptatum sunt distinctio dolorum adipisci quasi? Ipsum ipsa minus labore! Sapiente sit, repudiandae dolores'
       />
 
@@ -50,7 +50,7 @@ const Menu = () => {
       <MenuCategory
         sectionBg={saladImg}
         items={salad}
-        title='Salad'
+        title='salad'
         content='Quia accusamus porro voluptate pariatur optio fugiat ex odit dolores velit nobis impedit quod voluptatum facere voluptates modi'
       />
 
@@ -58,7 +58,7 @@ const Menu = () => {
       <MenuCategory
         sectionBg={soupImg}
         items={soup}
-        title='Soup'
+        title='soup'
         content='Reprehenderit autem consectetur expedita ea culpa rerum provident assumenda tenetur, iste accusantium modi. Sint debitis tenetur illo officia '
       />
     </div>
