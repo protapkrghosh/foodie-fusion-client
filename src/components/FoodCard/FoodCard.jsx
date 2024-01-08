@@ -4,10 +4,11 @@ const FoodCard = ({ item }) => {
 
   return (
     <>
-      <div className="card lg:w-96 h-[520px] bg-base-100 hover:shadow-xl hover:shadow-[#dadada] rounded-none mx-auto duration-200">
+      <div className="card lg:w-96 h-[520px] bg-base-100 hover:shadow-xl hover:shadow-[#dadada] rounded-none mx-auto duration-200 relative">
         <figure>
           <img src={image} alt="Shoes" className="h-[270px] w-full" />
         </figure>
+        <p className="text-[#d6d7d8] text-[17px] text-center font-semibold bg-[#313639] p-2 absolute right-0 rounded-bl-xl">${ price }</p>
 
         <div className="bg-[#EFEFEF]">
           <div className=" h-[250px] border border-dashed border-[#CDCDCD] m-2">
