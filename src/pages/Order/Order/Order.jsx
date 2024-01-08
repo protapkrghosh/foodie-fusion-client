@@ -5,7 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useMenu } from '../../../hooks/useMenu';
 import OrderTabs from '../OrderTabs/OrderTabs';
 import { useParams } from 'react-router-dom';
-import 'react-tabs/style/react-tabs.css';
+// import 'react-tabs/style/react-tabs.css';
 import { Helmet } from 'react-helmet-async';
 
 const Order = () => {
@@ -31,12 +31,12 @@ const Order = () => {
       
       <div className='flex justify-center my-20'>
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList>
-            <Tab>Salads</Tab>
-            <Tab>Pizzas</Tab>
-            <Tab>Soups</Tab>
-            <Tab>Desserts</Tab>
-            <Tab>Drinks</Tab>
+          <TabList className='flex justify-center gap-5 mb-10 font-semibold uppercase'>
+            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Salads</Tab>
+            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Pizzas</Tab>
+            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Soups</Tab>
+            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Desserts</Tab>
+            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Drinks</Tab>
           </TabList>
 
           <TabPanel><OrderTabs items={salad}/></TabPanel>
