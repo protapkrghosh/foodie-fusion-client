@@ -25,7 +25,7 @@ const Menu = () => {
 
       {/* Today's Offered */}
       <SectionTitle subHeading={"Don't miss"} heading={"Today's Offer"} />
-      <MenuCategory items={offered} />
+      <MenuCategory items={offered}/>
       
       {/* Dessert menu items */}
       <MenuCategory

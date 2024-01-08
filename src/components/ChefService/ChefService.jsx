@@ -13,7 +13,7 @@ const ChefService = ({ title, content, sectionBg }) => {
       blur={{ min: -15, max: 15 }}
       bgImage={sectionBg}
       bgImageAlt="the dog"
-      strength={-300}
+      strength={-350}
       style={{ ...bgStyle }}
     >
       <div className="text-center h-[500px] bg-cover bg-center relative">
