@@ -5,7 +5,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { useMenu } from '../../../hooks/useMenu';
 import OrderTabs from '../OrderTabs/OrderTabs';
 import { useParams } from 'react-router-dom';
-// import 'react-tabs/style/react-tabs.css';
 import { Helmet } from 'react-helmet-async';
 
 const Order = () => {
@@ -31,12 +30,16 @@ const Order = () => {
       
       <div className='flex justify-center my-20'>
         <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-          <TabList className='flex justify-center gap-5 mb-10 font-semibold uppercase'>
-            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Salads</Tab>
-            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Pizzas</Tab>
-            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Soups</Tab>
-            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Desserts</Tab>
-            <Tab className='hover:text-[#D8AE6D] cursor-pointer border-b-2 border-b-white hover:border-[#D8AE6D] duration-300'>Drinks</Tab>
+          <TabList className='flex justify-center gap-5 mb-8 font-semibold uppercase'>
+            <Tab className={`cursor-pointer border-b-2 duration-300 ${tabIndex === 0 ? 'text-[#BB8506] border-[#ddbb89]' : 'hover:text-[#BB8506] border-b-2 border-b-transparent hover:border-[#D8AE6D]'}`}>Salads</Tab>
+
+            <Tab className={`cursor-pointer border-b-2 duration-300 ${tabIndex === 1 ? 'text-[#BB8506] border-[#ddbb89]' : 'hover:text-[#BB8506] border-b-2 border-b-transparent hover:border-[#D8AE6D]'}`}>Pizzas</Tab>
+
+            <Tab className={`cursor-pointer border-b-2 duration-300 ${tabIndex === 2 ? 'text-[#BB8506] border-[#ddbb89]' : 'hover:text-[#BB8506] border-b-2 border-b-transparent hover:border-[#D8AE6D]'}`}>Soups</Tab>
+
+            <Tab className={`cursor-pointer border-b-2 duration-300 ${tabIndex === 3 ? 'text-[#BB8506] border-[#ddbb89]' : 'hover:text-[#BB8506] border-b-2 border-b-transparent hover:border-[#D8AE6D]'}`}>Desserts</Tab>
+
+            <Tab className={`cursor-pointer border-b-2 duration-300 ${tabIndex === 4 ? 'text-[#BB8506] border-[#ddbb89]' : 'hover:text-[#BB8506] border-b-2 border-b-transparent hover:border-[#D8AE6D]'}`}>Drinks</Tab>
           </TabList>
 
           <TabPanel><OrderTabs items={salad}/></TabPanel>
