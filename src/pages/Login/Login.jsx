@@ -1,6 +1,8 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
+import img from '../../assets/others/authentication2.png'
+import loginBg from '../../assets/others/authentication.png'
 
 const Login = () => {
   const captchaRef = useRef(null);
@@ -35,28 +37,28 @@ const Login = () => {
 
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row">
+      <div className="hero min-h-screen" style={{ backgroundImage: `url(${loginBg})` }}>
+        <div className="hero-content flex-col lg:flex-row shadowBg pt-5">
           <div className="text-center lg:text-left w-1/2">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <img src={img} alt="Image" className='md:w-[700px]' />
           </div>
 
           {/* Login Form */}
-          <div className="card w-1/2 max-w-md shadow-2xl bg-base-100">
+          <div className="card w-1/2 max-w-md">
+            <h3 className='text-3xl text-center font-bold -mb-5'>Login</h3>
             <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <p className="label-text text-[16px] font-semibold">Email<span className='text-rose-600'>*</span></p>
                 </label>
-                <input type="email" name="email" placeholder="email" className="input input-bordered" required />
+                <input type="email" name="email" placeholder="Type here" className="input input-bordered" required />
               </div>
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <p className="label-text text-[16px] font-semibold">Password<span className='text-rose-600'>*</span></p>
                 </label>
-                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                <input type="password" name="password" placeholder="Enter your password" className="input input-bordered" required />
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                 </label>
@@ -68,11 +70,12 @@ const Login = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input type="text" ref={captchaRef} name="captcha" placeholder="Type the captcha above" className="input input-bordered" required />
-                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs w-16 mt-2">Validate</button>
+
+                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs border-[#D1A054] hover:border-[#D1A054] hover:bg-[#D1A054] w-16 mt-2 rounded-md">Validate</button>
               </div>
 
               <div className="form-control mt-6">
-                <input disabled={disabled} type="submit" value="Sign In" className="btn btn-primary" />
+                <input disabled={disabled} type="submit" value="Sign In" className="text-white text-[16px] btn bg-[#D1A054] hover:bg-[#bd904c] uppercase" />
               </div>
             </form>
           </div>

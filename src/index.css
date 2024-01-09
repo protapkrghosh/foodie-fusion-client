@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 .featured-bg {
-  background-image: url(./assets/home/featured.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+   background-image: url(./assets/home/featured.jpg);
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.shadowBg {
+   border-radius: 8px;
+   box-shadow: -5px 5px 27px #b8b8b8, 5px -5px 27px #ffffff;
 }
