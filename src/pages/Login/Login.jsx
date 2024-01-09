@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <div className="hero min-h-screen" style={{ backgroundImage: `url(${loginBg})` }}>
       <div className='my-14'>
-        <div className="hero-content flex-col lg:flex-row shadowBg py-8">
+        <div className="hero-content flex-col md:flex-row shadowBg py-8">
           <div className="text-center lg:text-left md:w-1/2">
             <img src={img} alt="Image" className='w-[500px] lg:w-[600px]' />
           </div>
@@ -83,7 +83,7 @@ const Login = () => {
 
             {/* Social Media */}
             <div className='flex flex-col justify-center items-center -mt-3'>
-              <p className='text-[#D1A054]'><small>New here? <Link to='/signUp' className='font-semibold hover:underline'>Create a New Account</Link> </small></p>
+              <p className='text-[#D1A054]'><small>New here? <Link to='/signup' className='font-semibold hover:underline'>Create a New Account</Link> </small></p>
               <p className='text-[15px] my-2 font-semibold'>Or sign in with</p>
 
               <div className='flex justify-center items-center space-x-8'>
