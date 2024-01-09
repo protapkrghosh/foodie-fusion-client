@@ -15,8 +15,15 @@ const SignUp = () => {
 
           {/* Login Form */}
           <div className="card w-full lg:w-1/2 md:max-w-sm">
-            <h3 className='text-3xl text-center font-bold -mb-5'>Login</h3>
+            <h3 className='text-3xl text-center font-bold -mb-5'>Sign Up</h3>
             <form className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <p className="label-text text-[16px] font-semibold">Name<span className='text-rose-600'>*</span></p>
+                </label>
+                <input type="text" name="name" placeholder="Your name" className="input input-bordered" required />
+              </div>
+
               <div className="form-control">
                 <label className="label">
                   <p className="label-text text-[16px] font-semibold">Email<span className='text-rose-600'>*</span></p>
@@ -29,19 +36,16 @@ const SignUp = () => {
                   <p className="label-text text-[16px] font-semibold">Password<span className='text-rose-600'>*</span></p>
                 </label>
                 <input type="password" name="password" placeholder="Enter your password" className="input input-bordered" required />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                </label>
               </div>
 
               <div className="form-control mt-6">
-                <input type="submit" value="Sign In" className="text-white text-[16px] btn bg-[#D1A054] hover:bg-[#bd904c] uppercase" />
+                <input type="submit" value="Sign Up" className="text-white text-[16px] btn bg-[#D1A054] hover:bg-[#bd904c] uppercase" />
               </div>
             </form>
 
             {/* Social Media */}
             <div className='flex flex-col justify-center items-center -mt-3'>
-              <p className='text-[#D1A054]'><small>New here? <Link to='/signup' className='font-semibold hover:underline'>Create a New Account</Link> </small></p>
+              <p className='text-[#D1A054]'><small>Already registered? <Link to='/signin' className='font-semibold hover:underline'>Go to log in</Link> </small></p>
               <p className='text-[15px] my-2 font-semibold'>Or sign in with</p>
 
               <div className='flex justify-center items-center space-x-8'>
