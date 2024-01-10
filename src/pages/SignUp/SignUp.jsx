@@ -19,7 +19,6 @@ const SignUp = () => {
       })
   }
 
-
   return (
     <>
       <Helmet>
