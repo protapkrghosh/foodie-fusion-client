@@ -1,13 +1,15 @@
+import { BiSolidErrorAlt } from 'react-icons/bi';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom'
 import img from '../../assets/others/authentication2.png'
 import loginBg from '../../assets/others/authentication.png'
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa6";
 import { useForm } from "react-hook-form"
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
+  const [error, setError] = useState('');
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { createUser } = useContext(AuthContext);
 
@@ -17,6 +19,9 @@ const SignUp = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
       })
+      .catch((err) => {
+        setError(err.message);
+      });
   }
 
   return (
@@ -63,8 +68,14 @@ const SignUp = () => {
                   {errors.password?.type === "minLength" && (<span className='text-[14px] text-rose-600'>Password must be 6 character</span>)}
                   {errors.password?.type === "maxLength" && (<span className='text-[14px] text-rose-600'>Password less than 16 characters</span>)}
                   {errors.password?.type === "pattern" && (<span className='text-[14px] text-rose-600'>One uppercase, lowercase and special characters</span>)}
-
                 </div>
+
+                {/* Error massage */}
+                {error && (
+                  <p className="flex items-center gap-2 pt-2 ml-1 text-xs text-red-500" role="alert">
+                    <BiSolidErrorAlt size={17} /> <span>{error}</span>
+                  </p>
+                )}
 
                 <div className="form-control mt-6">
                   <input type="submit" value="Sign Up" className="text-white text-[16px] btn bg-[#D1A054] hover:bg-[#bd904c] uppercase" />

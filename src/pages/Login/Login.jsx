@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { BiSolidErrorAlt } from 'react-icons/bi';
 import toast from 'react-hot-toast';
 import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
@@ -9,6 +10,7 @@ import loginBg from '../../assets/others/authentication.png'
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa6";
 
 const Login = () => {
+  const [error, setError] = useState('');
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate()
@@ -28,10 +30,12 @@ const Login = () => {
     signIn(email, password)
       .then(result => {
         const user = result.user;
-        console.log(user);
         toast.success('User Sign In Successful');
         navigate(from, { replace: true });
       })
+      .catch((err) => {
+        setError(err.message);
+      });
   }
 
   const handleValidateCaptcha = (e) => {
@@ -84,6 +88,13 @@ const Login = () => {
                   </label>
                   <input onBlur={handleValidateCaptcha} type="text" name="captcha" placeholder="Type the captcha above" className="input input-bordered" required />
                 </div>
+                
+                {/* Error massage */}
+                {error && (
+                  <p className="flex items-center gap-2 pt-2 ml-1 text-xs text-red-500" role="alert">
+                    <BiSolidErrorAlt size={17} /> <span>{error}</span>
+                  </p>
+                )}
 
                 <div className="form-control mt-6">
                   <input disabled={disabled} type="submit" value="Sign In" className="text-white text-[16px] btn bg-[#D1A054] hover:bg-[#bd904c] uppercase" />
