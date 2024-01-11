@@ -1,23 +1,34 @@
 import { BiSolidErrorAlt } from 'react-icons/bi';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import img from '../../assets/others/authentication2.png'
 import loginBg from '../../assets/others/authentication.png'
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa6";
 import { useForm } from "react-hook-form"
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState('');
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const { createUser } = useContext(AuthContext);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const onSubmit = (data) => {
+    console.log(data);
     createUser(data.email, data.password)
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            console.log('user profile updated');
+            reset();
+            toast.success('User profile updated')
+            navigate('/');
+          })
+          .catch(err => console.log(err))
       })
       .catch((err) => {
         setError(err.message);
@@ -53,7 +64,7 @@ const SignUp = () => {
                   <label className="label">
                     <p className="label-text text-[16px] font-semibold">Photo URL<span className='text-rose-600'>*</span></p>
                   </label>
-                  <input type="text" {...register("photoURL", { required: true })} name="name" placeholder="https://image.jpg" className="input input-bordered" />
+                  <input type="text" {...register("photoURL", { required: true })} name="photoURL" placeholder="https://image.jpg" className="input input-bordered" />
                   {errors.photoURL && <span className='text-[14px] text-rose-600'>Photo URL is required</span>}
                 </div>
 
