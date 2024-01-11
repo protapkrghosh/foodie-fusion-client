@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import img from '../../assets/others/authentication2.png'
 import loginBg from '../../assets/others/authentication.png'
 import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa6";
@@ -11,6 +11,9 @@ import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa6";
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -26,7 +29,8 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
-        toast.success('User Sign In Successful')
+        toast.success('User Sign In Successful');
+        navigate(from, { replace: true });
       })
   }
 
