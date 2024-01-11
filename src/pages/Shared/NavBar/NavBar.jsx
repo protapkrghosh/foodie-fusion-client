@@ -19,7 +19,8 @@ const NavBar = () => {
 
     {
       user ? <>
-        <li><button onClick={handleLogOut} className="btn btn-ghost uppercase font-normal" >Sign Out</button></li>
+        <li><button onClick={handleLogOut} className="uppercase font-normal" >Sign Out</button></li>
+        {user ? <span className="ml-3">{user?.displayName}</span> : " "}
       </> : <>
         <li><Link to="/signin">Login</Link></li>
       </>
@@ -29,27 +30,28 @@ const NavBar = () => {
   return (
     <>
       <div className="navbar fixed bg-opacity-30 z-10 text-white bg-zinc-800 max-w-[96%] px-6">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 uppercase">
-              {navOptions}
-            </ul>
-          </div>
+        <div className="navbar-start w-2/12">
           <Link to="/" className="text-xl font-semibold">
             <p className="uppercase">Foodie Fusion</p>
             <p className="tracking-[.28em]">Restaurant</p>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 uppercase">
-            {navOptions}
-          </ul>
-        </div>
-        <div className="navbar-end">
-          {user ? <span>{user?.displayName}</span> : " "}
+
+        <div className="navbar-end w-full">
+          <div className="hidden lg:flex">
+            <ul className="menu menu-horizontal px-1 uppercase flex items-center">
+              {navOptions}
+            </ul>
+          </div>
+
+          <div className="dropdown">
+            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 -ml-[118px] z-[1] py-5 px-2 shadow bg-slate-700 rounded-xl w-52 uppercase">
+              {navOptions}
+            </ul>
+          </div>
         </div>
       </div>
     </>
