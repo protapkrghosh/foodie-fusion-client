@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { IoHome, IoMenu } from "react-icons/io5";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaCartShopping, FaWallet } from "react-icons/fa6";
@@ -18,42 +18,48 @@ const Dashboard = () => {
           <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
         </div>
-        <div className="drawer-side">
+
+        <div className="drawer-side ">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 min-h-full bg-[#d1a054] text-base-content">
             {/* Sidebar content here */}
+            <div className="mb-10 ml-4">
+              <p className="text-xl uppercase font-bold">Foodie Fusion</p>
+              <p className="text-lg font-semibold tracking-[7px]">Restaurant</p>
+            </div>
+
             <li className="uppercase">
-              <Link><IoHome className="text-[18px]"/> User Home</Link>
+              <NavLink to='/dashboard/home'><IoHome className="text-[18px]"/> User Home</NavLink>
             </li>
             <li className="uppercase">
-              <Link><FaCalendarAlt className="text-[18px]"/>Reservation</Link>
+              <NavLink to='/dashboard/reservation'><FaCalendarAlt className="text-[18px]"/>Reservation</NavLink>
             </li>
             <li className="uppercase">
-              <Link><FaWallet className="text-[18px]"/> Payment History</Link>
+              <NavLink to='/dashboard/history'><FaWallet className="text-[18px]"/> Payment History</NavLink>
             </li>
             <li className="uppercase">
-              <Link><FaCartShopping className="text-[18px]"/> My Cart</Link>
+              <NavLink to='/dashboard/mycart'><FaCartShopping className="text-[18px]"/> My Cart</NavLink>
             </li>
             <li className="uppercase">
-              <Link><TbMessage2Star className="text-[21px]"/>Add Review</Link>
+              <NavLink to='/dashboard/review'><TbMessage2Star className="text-[21px]"/>Add Review</NavLink>
             </li>
             <li className="uppercase">
-              <Link><TbCalendarPlus className="text-[21px]"/>My Booking</Link>
+              <NavLink to='/dashboard/booking'><TbCalendarPlus className="text-[21px]"/>My Booking</NavLink>
             </li>
 
             <div className="divider"></div>
 
             <li className="uppercase">
-              <Link><IoHome className="text-[18px]" /> Home</Link>
+              <NavLink to='/'><IoHome className="text-[18px]" /> Home</NavLink>
             </li>
             <li className="uppercase">
-              <Link><IoMenu className="text-[21px]" /> Menu</Link>
+              <NavLink to='/dashboard/menu'><IoMenu className="text-[21px]" /> Menu</NavLink>
             </li>
             <li className="uppercase">
-              <Link><GiShoppingBag className="text-[19px]" /> Shop</Link>
+              <NavLink to='/dashboard/shop'><GiShoppingBag className="text-[19px]" /> Shop</NavLink>
             </li>
             <li className="uppercase">
-              <Link><MdEmail className="text-[18px]" /> Contact</Link>
+              <NavLink to='/dashboard/contact'><MdEmail className="text-[18px]" /> Contact</NavLink>
             </li>
           </ul>
 

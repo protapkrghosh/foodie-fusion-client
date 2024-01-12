@@ -10,7 +10,7 @@ const Featured = () => {
           heading="FROM OUR MENU"
         />
 
-        <div className="md:flex justify-center items-center pb-16 pt-10 px-32">
+        <div className="md:flex justify-center items-center pb-16 pt-10 px-14 md:px-20 lg:px-32">
           <div className="md:mr-10">
             <img src={img} alt="" className="rounded-md" />
           </div>
