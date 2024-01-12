@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import profile from "../../../assets/others/profile.png"
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const NavBar = () => {
     <li><Link to="/secret">Secret</Link></li>
     <li className="relative">
       <Link to="/">
-        <FaShoppingCart className="text-2xl"/>
+        <FaShoppingCart className="text-2xl" />
         <div className="flex justify-center items-center font-semibold h-6 w-6 bg-[#e6af5d] border-none text-black rounded-full absolute left-8 -top-1">9</div>
       </Link>
     </li>
@@ -27,7 +28,11 @@ const NavBar = () => {
     {
       user ? <>
         <li><button onClick={handleLogOut} className="uppercase font-normal" >Sign Out</button></li>
-        {user ? <span className="ml-3">{user?.displayName}</span> : " "}
+        {user ? <div className="avatar online">
+          <div className="w-10 rounded-full">
+            <img src={user?.photoURL} />
+          </div>
+        </div> : ''}
       </> : <>
         <li><Link to="/signin">Login</Link></li>
       </>
