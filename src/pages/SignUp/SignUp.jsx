@@ -16,17 +16,27 @@ const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password)
       .then(result => {
         const loggedUser = result.user;
-        console.log(loggedUser);
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            console.log('user profile updated');
-            reset();
-            toast.success('User profile updated')
-            navigate('/');
+            const saveUser = {name: data.name, email: data.email, image: data.photoURL}
+            fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                'content-type': 'application/json'
+              },
+              body: JSON.stringify(saveUser)
+            })
+              .then(res => res.json())
+              .then(data => {
+                if (data.insertedId) {
+                  reset();
+                  toast.success('User created successfully')
+                  navigate('/');
+                }
+              })
           })
           .catch(err => console.log(err))
       })
