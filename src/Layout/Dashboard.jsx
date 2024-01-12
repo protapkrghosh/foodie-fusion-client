@@ -21,7 +21,7 @@ const Dashboard = () => {
 
         <div className="drawer-side ">
           <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 min-h-full bg-[#d1a054] text-base-content">
+          <ul className="menu p-4 w-56 md:w-64 min-h-full bg-[#d1a054] text-base-content">
             {/* Sidebar content here */}
             <div className="mb-10 ml-4">
               <p className="text-xl uppercase font-bold">Foodie Fusion</p>

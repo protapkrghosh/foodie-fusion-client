@@ -1,15 +1,24 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { useCart } from "../../../hooks/useCart";
 
 const MyCart = () => {
+  const [cart] = useCart();
+  console.log(cart);
+  const Total = cart.reduce((sum, item) => item.price + sum, 0)
+
   return (
-    <div>
+    <div className="w-full">
       <Helmet>
         <title>My Cart | Foodie Fusion Restaurant</title>
       </Helmet>
 
       <SectionTitle heading={'Wanna add more?'} subHeading={'My Cart'} />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis eaque commodi consectetur? Natus delectus eveniet dolorem maiores magnam ratione alias. Incidunt veritatis molestias asperiores. Voluptas in vel consequuntur consectetur nesciunt?</p>
+      
+      <div>
+        <h3>Total Cart: {cart.length}</h3>        
+        <h3>Total Price: ${Total}</h3>        
+      </div>
     </div>
   );
 };
