@@ -1,23 +1,92 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { useCart } from "../../../hooks/useCart";
+import { RiDeleteBinLine } from "react-icons/ri";
+import Swal from 'sweetalert2'
 
 const MyCart = () => {
-  const [cart] = useCart();
-  console.log(cart);
+  const [cart, refetch] = useCart();
   const Total = cart.reduce((sum, item) => item.price + sum, 0)
+  const handleDelete = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to revert ${item.name}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/carts/${item._id}`, {
+          method: 'DELETE'
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Successful",
+                text: `${item.name} has been deleted`,
+                icon: "success"
+              });
+            }
+          })
+      }
+    });
+  }
 
   return (
-    <div className="w-full">
+    <div className="w-full md:w-[70%] mx-auto">
       <Helmet>
         <title>My Cart | Foodie Fusion Restaurant</title>
       </Helmet>
 
-      <SectionTitle heading={'Wanna add more?'} subHeading={'My Cart'} />
-      
+      <SectionTitle heading={'Add more?'} subHeading={'My Cart'} />
+
       <div>
-        <h3>Total Cart: {cart.length}</h3>        
-        <h3>Total Price: ${Total}</h3>        
+        <div className="flex justify-between items-center mb-8">
+          <h3 className="text-xl font-semibold uppercase">Total Cart: {cart.length}</h3>
+          <h3 className="text-xl font-semibold uppercase">Total Price: ${Total}</h3>
+          <button className="btn btn-sm bg-[#ebb25e] hover:bg-[#D1A054] border-none rounded-md uppercase">Pay</button>
+        </div>
+
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead className="text-white bg-[#D1A054] uppercase">
+              <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {
+                cart.map((item, index) => <tr
+                  key={item._id}
+                >
+                  <td>{index + 1}</td>
+                  <td>
+                    <img src={item.image} alt="Food Image" className="w-24 h-16 rounded-xl" />
+                  </td>
+                  <td>
+                    <p className="font-bold">{item.name}</p>
+                  </td>
+                  <td className="font-semibold">${item.price}</td>
+                  <td>
+                    <button onClick={() => handleDelete(item)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-rose-600 hover:bg-rose-700 rounded-md duration-200"><RiDeleteBinLine /></button>
+                  </td>
+                </tr>)
+              }
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

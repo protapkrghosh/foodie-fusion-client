@@ -5,18 +5,19 @@ import { FaCartShopping, FaWallet } from "react-icons/fa6";
 import { TbMessage2Star, TbCalendarPlus } from "react-icons/tb";
 import { GiShoppingBag } from "react-icons/gi";
 import { MdEmail } from "react-icons/md";
+import { useCart } from "../hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart();
+
   return (
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
+          <label htmlFor="my-drawer-2" className="btn bg-[#D0D0D0] drawer-button lg:hidden mt-2">Open Menu</label>
           <Outlet />
-
-          <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-
         </div>
 
         <div className="drawer-side ">
@@ -37,8 +38,10 @@ const Dashboard = () => {
             <li className="uppercase">
               <NavLink to='/dashboard/history'><FaWallet className="text-[18px]"/> Payment History</NavLink>
             </li>
-            <li className="uppercase">
-              <NavLink to='/dashboard/mycart'><FaCartShopping className="text-[18px]"/> My Cart</NavLink>
+            <li className="uppercase relative">
+              <NavLink to='/dashboard/mycart'><FaCartShopping className="text-[18px]" /> My Cart
+                <span className="font-semibold badge bg-[#f8bf69] border-none text-black absolute right-[37%]">{cart?.length || 0}</span>
+              </NavLink>
             </li>
             <li className="uppercase">
               <NavLink to='/dashboard/review'><TbMessage2Star className="text-[21px]"/>Add Review</NavLink>

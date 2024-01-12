@@ -29,9 +29,11 @@ const NavBar = () => {
     {
       user ? <>
         <li><button onClick={handleLogOut} className="uppercase font-normal" >Sign Out</button></li>
-        {user ? <div className="avatar online">
-          <div className="w-10 rounded-full">
-            <img src={user?.photoURL} />
+        {user ? <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+          <div className="avatar online">
+            <div className="w-10 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
           </div>
         </div> : ''}
       </> : <>
