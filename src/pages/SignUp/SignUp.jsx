@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form"
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import toast from 'react-hot-toast';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const SignUp = () => {
         const loggedUser = result.user;
         updateUserProfile(data.name, data.photoURL)
           .then(() => {
-            const saveUser = {name: data.name, email: data.email, image: data.photoURL}
+            const saveUser = { name: data.name, email: data.email, image: data.photoURL }
             fetch('http://localhost:5000/users', {
               method: 'POST',
               headers: {
@@ -111,23 +112,9 @@ const SignUp = () => {
                 </div>
               </form>
 
-              {/* Social Media */}
-              <div className='flex flex-col justify-center items-center -mt-3'>
-                <p className='text-[#D1A054]'><small>Already registered? <Link to='/signin' className='font-semibold hover:underline'>Go to log in</Link> </small></p>
-                <p className='text-[15px] my-2 font-semibold'>Or sign in with</p>
-
-                <div className='flex justify-center items-center space-x-8'>
-                  <span className='border border-black p-[9px] rounded-full text-[20px] cursor-pointer group'>
-                    <FaFacebookF className='group-hover:scale-125 duration-200' />
-                  </span>
-                  <span className='border border-black p-[9px] rounded-full text-[20px] cursor-pointer group'>
-                    <FaGoogle className='group-hover:scale-125 duration-200' />
-                  </span>
-                  <span className='border border-black p-[9px] rounded-full text-[20px] cursor-pointer group'>
-                    <FaGithub className='group-hover:scale-125 duration-200' />
-                  </span>
-                </div>
-              </div>
+              {/* Social media login */}
+              <p className='text-center text-[#D1A054]'><small>Already registered? <Link to='/signin' className='font-semibold hover:underline'>Go to log in</Link> </small></p>
+              <SocialLogin />
             </div>
           </div>
         </div>
