@@ -37,14 +37,14 @@ const MyCart = () => {
   }
 
   return (
-    <div className="w-full md:w-[70%] mx-auto">
+    <div className="w-full mx-auto">
       <Helmet>
         <title>My Cart | Foodie Fusion Restaurant</title>
       </Helmet>
 
-      <SectionTitle heading={'Add more?'} subHeading={'My Cart'} />
+      <SectionTitle heading={'Wanna Add more?'} subHeading={'My Cart'} />
 
-      <div>
+      <div className="px-5 md:px-20 lg:px-32 mt-10 md:mt-16">
         <div className="flex justify-between items-center mb-8">
           <h3 className="text-xl font-semibold uppercase">Total Cart: {cart.length}</h3>
           <h3 className="text-xl font-semibold uppercase">Total Price: ${Total}</h3>
@@ -52,7 +52,7 @@ const MyCart = () => {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto rounded-t-xl">
           <table className="table">
             {/* head */}
             <thead className="text-white bg-[#D1A054] uppercase">

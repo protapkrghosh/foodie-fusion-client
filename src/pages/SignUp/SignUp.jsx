@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom'
 import img from '../../assets/others/authentication2.png'
 import loginBg from '../../assets/others/authentication.png'
-import { FaFacebookF, FaGoogle, FaGithub } from "react-icons/fa6";
 import { useForm } from "react-hook-form"
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
