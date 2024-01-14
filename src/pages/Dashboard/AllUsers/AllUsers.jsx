@@ -4,6 +4,7 @@ import { FaUsers, FaUserShield } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
@@ -41,7 +42,32 @@ const AllUsers = () => {
   }
 
   const handleDelete = (user) => {
-
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to revert ${user.name}!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Successful",
+                text: `${user.name} has been deleted`,
+                icon: "success"
+              });
+            }
+          })
+      }
+    });
   }
 
   return (
@@ -70,7 +96,7 @@ const AllUsers = () => {
               <tbody>
                 {
                   users.map((user, index) => <tr key={user._id}>
-                    <th>{ index + 1 }</th>
+                    <th>{index + 1}</th>
                     <td className="capitalize font-semibold">{user?.name}</td>
                     <td>{user?.email}</td>
                     <td>
@@ -78,7 +104,7 @@ const AllUsers = () => {
                         user.role === 'admin' ? <>
                           <button onClick={() => handleMakeUser(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="Admin"><FaUserShield /></button>
                         </> : <>
-                            <button onClick={() => handleMakeAdmin(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="User"><FaUsers /></button>
+                          <button onClick={() => handleMakeAdmin(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="User"><FaUsers /></button>
                         </>
                       }
                     </td>
