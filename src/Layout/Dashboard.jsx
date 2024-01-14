@@ -8,11 +8,13 @@ import { MdEmail } from "react-icons/md";
 import { useCart } from "../hooks/useCart";
 import { ImSpoonKnife } from "react-icons/im";
 import { TfiMenuAlt } from "react-icons/tfi";
+import { useAdmin } from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
   // TODO: Load data from the server to have dynamic isAdmin based on data
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <>
