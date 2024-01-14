@@ -27,6 +27,19 @@ const AllUsers = () => {
       })
   }
 
+  const handleMakeUser = (user) => {
+    fetch(`http://localhost:5000/users/${user._id}`, {
+      method: 'PATCH'
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount) {
+          refetch();
+          toast.success(`${user.name} is an User Now!`);
+        }
+      })
+  }
+
   const handleDelete = (user) => {
 
   }
@@ -63,7 +76,7 @@ const AllUsers = () => {
                     <td>
                       {
                         user.role === 'admin' ? <>
-                          <button className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="Admin"><FaUserShield /></button>
+                          <button onClick={() => handleMakeUser(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="Admin"><FaUserShield /></button>
                         </> : <>
                             <button onClick={() => handleMakeAdmin(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="User"><FaUsers /></button>
                         </>
