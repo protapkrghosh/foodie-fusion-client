@@ -14,22 +14,22 @@ const FoodCard = ({ item }) => {
 
   const handleAddToCart = () => {
     if (user && user.email) {
-      const cartItem = {menuItemId: _id, name, image, price, email: user.email}
+      const cartItem = { menuItemId: _id, name, image, price, email: user.email }
 
-      fetch('http://localhost:5000/carts', {
+      fetch('https://foodiefusionserver.vercel.app/carts', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
         },
         body: JSON.stringify(cartItem)
       })
-      .then(res => res.json())
+        .then(res => res.json())
         .then(data => {
           if (data.insertedId) {
             refetch(); // Refetch cart to update the number of items in the cart
             toast.success('Food added to the cart successfully')
-        }
-      })
+          }
+        })
     }
     else {
       Swal.fire({
@@ -41,7 +41,7 @@ const FoodCard = ({ item }) => {
         confirmButtonText: "Sign In Now!"
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate('/signin', {state: {from: location}})
+          navigate('/signin', { state: { from: location } })
         }
       });
     }
