@@ -41,7 +41,7 @@ const Dashboard = () => {
                   <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> Admin Home</NavLink>
                 </li>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/add-items'><ImSpoonKnife className="text-[20px]" />Add Items</NavLink>
+                  <NavLink to='/dashboard/add-items'><ImSpoonKnife className="text-[20px]" />Add a Item</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/manage-items'><TfiMenuAlt className="text-[20px]" /> Manage Items</NavLink>
@@ -50,7 +50,7 @@ const Dashboard = () => {
                   <NavLink to='/dashboard/bookings'><FaBook className="text-[20px]" />Manage Bookings</NavLink>
                 </li>
                 <li className="uppercase relative">
-                  <NavLink to='/dashboard/allusers'><FaPeopleGroup className="text-[20px]" /> All Users
+                  <NavLink to='/dashboard/all-users'><FaPeopleGroup className="text-[20px]" /> All Users
                   </NavLink>
                 </li>
               </> : <>
@@ -64,7 +64,7 @@ const Dashboard = () => {
                   <NavLink to='/dashboard/history'><FaWallet className="text-[18px]" /> Payment History</NavLink>
                 </li>
                 <li className="uppercase relative">
-                  <NavLink to='/dashboard/mycart'><FaCartShopping className="text-[18px]" /> My Cart
+                  <NavLink to='/dashboard/my-cart'><FaCartShopping className="text-[18px]" /> My Cart
                     <span className="font-semibold badge bg-[#f8bf69] border-none text-black absolute right-[33%] md:right-[37%]">{cart?.length || 0}</span>
                   </NavLink>
                 </li>
