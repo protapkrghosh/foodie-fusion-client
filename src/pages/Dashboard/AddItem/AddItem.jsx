@@ -26,11 +26,11 @@ const AddItem = () => {
           const imgURL = imgResponse.data.display_url;
           const { name, price, category, recipe } = data;
           const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL };
-          console.log(newItem);
+          // console.log(newItem);
 
           axiosSecure.post('/menu', newItem)
             .then(data => {
-              console.log('After posting new menu item', data.data);
+              // console.log('After posting new menu item', data.data);
               if (data.data.insertedId) {
                 reset();
                 toast.success('Menu item added successfully')
@@ -49,7 +49,7 @@ const AddItem = () => {
       <SectionTitle heading={"Add an item"} subHeading={"What's new"} />
 
       <div className="px-5 md:px-20 lg:px-32">
-        <div className="bg-[#f3f3f3] p-10">
+        <div className="bg-[#f3f3f3] p-5 md:p-10">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <label className="form-control">
               <div className="label">
@@ -59,7 +59,7 @@ const AddItem = () => {
               {errors.name && <span className='text-[14px] text-rose-600'>Name is required</span>}
             </label>
 
-            <div className="flex gap-5">
+            <div className="md:flex gap-5">
               <label className="form-control w-full">
                 <div className="label">
                   <p className="label-text text-[15px] font-semibold">Category<span className='text-rose-600'>*</span></p>
