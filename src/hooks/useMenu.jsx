@@ -8,7 +8,7 @@ export const useMenu = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-      fetch('http://localhost:5000/menu')
+      fetch('https://foodiefusionserver.vercel.app/menu')
         .then(res => res.json())
         .then(data => {
           setMenu(data);
@@ -18,12 +18,12 @@ export const useMenu = () => {
   */
 
   // Use by react query
-  const { data: menu = [], isLoading: loading } = useQuery({
+  const { data: menu = [], isLoading: loading, refetch } = useQuery({
     queryKey: ['menu'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/menu');
+      const res = await fetch('https://foodiefusionserver.vercel.app/menu');
       return res.json();
     }
   })
-  return [menu, loading];
+  return [menu, loading, refetch];
 }
