@@ -1,12 +1,15 @@
-import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import React from 'react';
+import toast from 'react-hot-toast';
+import { Helmet } from "react-helmet-async";
 import { useForm } from 'react-hook-form';
 import { ImSpoonKnife } from "react-icons/im";
+import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const img_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
 const AddItem = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [axiosSecure] = useAxiosSecure();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const img_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${img_hosting_token}`;
 
   const onSubmit = data => {
@@ -19,10 +22,23 @@ const AddItem = () => {
     })
       .then(res => res.json())
       .then(imgResponse => {
-        console.log(imgResponse);
+        if (imgResponse.success) {
+          const imgURL = imgResponse.data.display_url;
+          const { name, price, category, recipe } = data;
+          const newItem = { name, price: parseFloat(price), category, recipe, image: imgURL };
+          console.log(newItem);
+
+          axiosSecure.post('/menu', newItem)
+            .then(data => {
+              console.log('After posting new menu item', data.data);
+              if (data.data.insertedId) {
+                reset();
+                toast.success('Menu item added successfully')
+              }
+            })
+        }
       })
   };
-  console.log(errors);
 
   return (
     <div className="w-full mx-auto">
