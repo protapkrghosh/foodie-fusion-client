@@ -58,7 +58,7 @@ const Dashboard = () => {
                   <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> User Home</NavLink>
                 </li>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/reservation'><FaCalendarAlt className="text-[18px]" />Reservation</NavLink>
+                  <NavLink to='/dashboard/payment'><FaCalendarAlt className="text-[18px]" />Reservation</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/history'><FaWallet className="text-[18px]" /> Payment History</NavLink>
