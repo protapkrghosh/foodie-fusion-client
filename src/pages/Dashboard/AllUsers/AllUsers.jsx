@@ -74,7 +74,7 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto bg-[#f6f6f6] min-h-screen">
       <Helmet>
         <title>All Users | Foodie Fusion Restaurant</title>
       </Helmet>
@@ -82,43 +82,45 @@ const AllUsers = () => {
       <SectionTitle heading={'Manage All Users'} subHeading={'How Many ??'} />
 
       <div className="px-5 md:px-20 lg:px-32 mt-10 md:mt-16">
-        <p className="text-xl font-semibold uppercase mb-5">Total Users: {users.length}</p>
-        <div>
-          <div className="overflow-x-auto rounded-t-xl">
-            <table className="table table-zebra">
-              {/* head */}
-              <thead className="text-white bg-[#D1A054] uppercase">
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  users.map((user, index) => <tr key={user._id}>
-                    <th>{index + 1}</th>
-                    <td className="capitalize font-semibold">{user?.name}</td>
-                    <td>{user?.email}</td>
-                    <td>
-                      {
-                        user.role === 'admin' ? <>
-                          <button onClick={() => handleMakeUser(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="Admin"><FaUserShield /></button>
-                        </> : <>
-                          <button onClick={() => handleMakeAdmin(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="User"><FaUsers /></button>
-                        </>
-                      }
-                    </td>
-                    <td>
-                      <button onClick={() => handleDelete(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-rose-600 hover:bg-rose-700 rounded-md duration-200"><RiDeleteBinLine /></button>
-                    </td>
-                  </tr>)
-                }
+        <div className="bg-white p-8">
+          <p className="text-xl font-semibold uppercase mb-5">Total Users: {users.length}</p>
+          <div>
+            <div className="overflow-x-auto rounded-t-xl">
+              <table className="table table-zebra">
+                {/* head */}
+                <thead className="text-white bg-[#D1A054] uppercase">
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    users.map((user, index) => <tr key={user._id}>
+                      <th className="text-[14px] font-semibold">{index + 1}</th>
+                      <td className="text-[15px] font-semibold capitalize">{user?.name}</td>
+                      <td>{user?.email}</td>
+                      <td>
+                        {
+                          user.role === 'admin' ? <>
+                            <button onClick={() => handleMakeUser(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="Admin"><FaUserShield /></button>
+                          </> : <>
+                            <button onClick={() => handleMakeAdmin(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#b68a49] rounded-md duration-200 tooltip tooltip-left" data-tip="User"><FaUsers /></button>
+                          </>
+                        }
+                      </td>
+                      <td>
+                        <button onClick={() => handleDelete(user)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-rose-600 hover:bg-rose-700 rounded-md duration-200"><RiDeleteBinLine /></button>
+                      </td>
+                    </tr>)
+                  }
 
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

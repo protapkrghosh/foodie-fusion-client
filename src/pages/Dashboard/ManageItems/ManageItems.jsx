@@ -1,12 +1,16 @@
+import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import { useCart } from "../../../hooks/useCart";
+import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
-import Swal from 'sweetalert2'
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { useMenu } from "../../../hooks/useMenu";
+import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
-const MyCart = () => {
-  const [cart, refetch] = useCart();
-  const Total = cart.reduce((sum, item) => item.price + sum, 0)
+const ManageItems = () => {
+  const [menu, loading, refetch] = useMenu();
+  const [axiosSecure] = useAxiosSecure();
+
   const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
@@ -18,18 +22,11 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://foodiefusionserver.vercel.app/carts/${item._id}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.deletedCount > 0) {
+        axiosSecure.delete(`/menu/${item._id}`)
+          .then(res => {
+            if (res.data.deletedCount > 0) {
               refetch();
-              Swal.fire({
-                title: "Successful",
-                text: `${item.name} has been deleted`,
-                icon: "success"
-              });
+              toast.success(`${item.name} deleted successfully`);
             }
           })
       }
@@ -39,18 +36,16 @@ const MyCart = () => {
   return (
     <div className="w-full mx-auto bg-[#f6f6f6]">
       <Helmet>
-        <title>My Cart | Foodie Fusion Restaurant</title>
+        <title>Manage Items | Foodie Fusion Restaurant</title>
       </Helmet>
 
-      <SectionTitle heading={'Wanna Add more?'} subHeading={'My Cart'} />
+      <SectionTitle heading={'Manage All Items'} subHeading={'Hurry Up!'} />
 
       {/* Table */}
-      <div className="px-5 md:px-20 lg:px-32 mt-10 md:mt-16">
+      <div className="px-5 md:px-12 lg:px-20 mt-10 md:mt-16">
         <div className="bg-white p-8">
           <div className="flex justify-between items-center mb-8">
-            <h3 className="text-xl font-semibold uppercase">Total Cart: {cart.length}</h3>
-            <h3 className="text-xl font-semibold uppercase">Total Price: ${Total}</h3>
-            <button className="btn btn-sm bg-[#ebb25e] hover:bg-[#D1A054] border-none rounded-md uppercase">Pay</button>
+            <h3 className="text-xl font-semibold uppercase">Total Items: {menu.length}</h3>
           </div>
 
           <div className="overflow-x-auto rounded-t-xl">
@@ -59,16 +54,18 @@ const MyCart = () => {
               <thead className="text-white bg-[#D1A054] uppercase">
                 <tr>
                   <th>#</th>
-                  <th>Image</th>
-                  <th>Name</th>
+                  <th>Recipe Image</th>
+                  <th>Item Name</th>
+                  <th>Category</th>
                   <th>Price</th>
+                  <th>Edit</th>
                   <th>Action</th>
                 </tr>
               </thead>
 
               <tbody>
                 {
-                  cart.map((item, index) => <tr
+                  menu.map((item, index) => <tr
                     key={item._id}
                   >
                     <td className="text-[14px] font-semibold">{index + 1}</td>
@@ -78,7 +75,13 @@ const MyCart = () => {
                     <td>
                       <p className="text-[16px] font-semibold">{item.name}</p>
                     </td>
+                    <td>
+                      <p className="text-[#a5a5a5] capitalize mt-[2px]">{item.category}</p>
+                    </td>
                     <td className="font-semibold">${item.price}</td>
+                    <td>
+                      <button className="text-white text-[18px] flex justify-center items-center w-8 h-8 bg-[#D1A054] hover:bg-[#B98D4A] rounded-md duration-200"><FaRegEdit /></button>
+                    </td>
                     <td>
                       <button onClick={() => handleDelete(item)} className="text-white text-xl flex justify-center items-center w-8 h-8 bg-rose-600 hover:bg-rose-700 rounded-md duration-200"><RiDeleteBinLine /></button>
                     </td>
@@ -94,4 +97,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default ManageItems;
