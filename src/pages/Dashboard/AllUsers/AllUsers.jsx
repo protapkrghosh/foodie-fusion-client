@@ -100,8 +100,8 @@ const AllUsers = () => {
                 <tbody>
                   {
                     users.map((user, index) => <tr key={user._id}>
-                      <th>{index + 1}</th>
-                      <td className="capitalize font-semibold">{user?.name}</td>
+                      <th className="text-[14px] font-semibold">{index + 1}</th>
+                      <td className="text-[15px] font-semibold capitalize">{user?.name}</td>
                       <td>{user?.email}</td>
                       <td>
                         {

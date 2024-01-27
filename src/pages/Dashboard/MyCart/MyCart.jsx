@@ -71,12 +71,12 @@ const MyCart = () => {
                   cart.map((item, index) => <tr
                     key={item._id}
                   >
-                    <td>{index + 1}</td>
+                    <td className="text-[14px] font-semibold">{index + 1}</td>
                     <td>
                       <img src={item.image} alt="Food Image" className="w-24 h-16 rounded-xl" />
                     </td>
                     <td>
-                      <p className="font-bold">{item.name}</p>
+                      <p className="text-[16px] font-semibold">{item.name}</p>
                     </td>
                     <td className="font-semibold">${item.price}</td>
                     <td>

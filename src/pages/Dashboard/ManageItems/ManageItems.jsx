@@ -16,7 +16,7 @@ const ManageItems = () => {
       <SectionTitle heading={'Manage All Items'} subHeading={'Hurry Up!'} />
 
       {/* Table */}
-      <div className="px-5 md:px-20 lg:px-24 mt-10 md:mt-16">
+      <div className="px-5 md:px-12 lg:px-20 mt-10 md:mt-16">
         <div className="bg-white p-8">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-xl font-semibold uppercase">Total Items: {menu.length}</h3>
@@ -28,8 +28,9 @@ const ManageItems = () => {
               <thead className="text-white bg-[#D1A054] uppercase">
                 <tr>
                   <th>#</th>
-                  <th>Image</th>
+                  <th>Recipe Image</th>
                   <th>Item Name</th>
+                  <th>Category</th>
                   <th>Price</th>
                   <th>Edit</th>
                   <th>Action</th>
@@ -41,12 +42,15 @@ const ManageItems = () => {
                   menu.map((item, index) => <tr
                     key={item._id}
                   >
-                    <td>{index + 1}</td>
+                    <td className="text-[14px] font-semibold">{index + 1}</td>
                     <td>
                       <img src={item.image} alt="Food Image" className="w-24 h-16 rounded-xl" />
                     </td>
                     <td>
-                      <p className="font-bold">{item.name}</p>
+                      <p className="text-[16px] font-semibold">{item.name}</p>
+                    </td>
+                    <td>
+                      <p className="text-[#999999] italic capitalize mt-[2px]">{item.category}</p>
                     </td>
                     <td className="font-semibold">${item.price}</td>
                     <td>
