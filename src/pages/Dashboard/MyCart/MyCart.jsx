@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { useCart } from "../../../hooks/useCart";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Swal from 'sweetalert2'
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -45,12 +46,14 @@ const MyCart = () => {
       <SectionTitle heading={'Wanna Add more?'} subHeading={'My Cart'} />
 
       {/* Table */}
-      <div className="px-5 md:px-20 lg:px-32 mt-10 md:mt-16">
+      <div className="px-5 md:px-20 lg:px-32 my-10 md:mt-16">
         <div className="bg-white p-8">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-xl font-semibold uppercase">Total Cart: {cart.length}</h3>
             <h3 className="text-xl font-semibold uppercase">Total Price: ${Total}</h3>
-            <button className="btn btn-sm bg-[#ebb25e] hover:bg-[#D1A054] border-none rounded-md uppercase">Pay</button>
+            <Link to="/dashboard/payment">
+              <button className="btn btn-sm bg-[#ebb25e] hover:bg-[#D1A054] border-none rounded-md uppercase">Pay</button>
+            </Link>
           </div>
 
           <div className="overflow-x-auto rounded-t-xl">
@@ -84,7 +87,6 @@ const MyCart = () => {
                     </td>
                   </tr>)
                 }
-
               </tbody>
             </table>
           </div>

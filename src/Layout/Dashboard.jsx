@@ -58,14 +58,14 @@ const Dashboard = () => {
                   <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> User Home</NavLink>
                 </li>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/reservation'><FaCalendarAlt className="text-[18px]" />Reservation</NavLink>
+                  <NavLink to='/dashboard/payment'><FaCalendarAlt className="text-[18px]" />Reservation</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/history'><FaWallet className="text-[18px]" /> Payment History</NavLink>
                 </li>
                 <li className="uppercase relative">
                   <NavLink to='/dashboard/my-cart'><FaCartShopping className="text-[18px]" /> My Cart
-                    <span className="font-semibold badge bg-[#f8bf69] border-none text-black absolute right-[33%] md:right-[37%]">{cart?.length || 0}</span>
+                      <span className="font-semibold badge bg-[#D1A054] border-none text-white absolute right-2 tracking-[2px]">{cart?.length || 0}</span>
                   </NavLink>
                 </li>
                 <li className="uppercase">
