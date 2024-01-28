@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
 import { useAuth } from "../../../hooks/useAuth";
 import { GiLog } from "react-icons/gi";
+import toast from 'react-hot-toast';
 
-const CheckoutForm = ({ price }) => {
+const CheckoutForm = ({ cart, price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -17,10 +18,10 @@ const CheckoutForm = ({ price }) => {
   useEffect(() => {
     axiosSecure.post('/create-payment-intent', { price })
       .then(res => {
-        console.log(res.data.clientSecret);
+        // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       })
-  }, [])
+  }, [price, axiosSecure])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -70,7 +71,24 @@ const CheckoutForm = ({ price }) => {
 
     if (paymentIntent.status === 'succeeded') {
       setTransactionId(paymentIntent.id);
-      
+
+      // Save payment information to the server
+      const payment = {
+        name: user?.displayName,
+        transactionId: paymentIntent.id,
+        price,
+        quantity: cart.length,
+        items: cart.map(item => item._id),
+        itemNames: cart.map(item => item.name),
+        category: cart.map(item => item.category)
+      }
+      axiosSecure.post('/payments', payment)
+        .then(res => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            // toast.success('Display confirm')
+          }
+        })
     }
   }
 
@@ -102,7 +120,7 @@ const CheckoutForm = ({ price }) => {
       </form>
 
       {cardError && <p className="text-rose-600 text-sm mt-5">{cardError}</p>}
-      {transactionId && <p className="text-green-600 text-sm mt-5">Transaction complete with transactionId: {transactionId}</p>}
+      {transactionId && <p className="text-green-600 text-sm mt-5">Transaction ID: {transactionId}</p>}
     </>
   );
 };
