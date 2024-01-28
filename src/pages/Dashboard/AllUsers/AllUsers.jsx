@@ -19,7 +19,7 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`https://foodiefusionserver.vercel.app/users/admin/${user._id}`, {
       method: 'PATCH'
     })
       .then(res => res.json())
@@ -32,7 +32,7 @@ const AllUsers = () => {
   }
 
   const handleMakeUser = (user) => {
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://foodiefusionserver.vercel.app/users/${user._id}`, {
       method: 'PATCH'
     })
       .then(res => res.json())
@@ -55,7 +55,7 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://foodiefusionserver.vercel.app/users/${user._id}`, {
           method: "DELETE"
         })
           .then(res => res.json())
@@ -81,7 +81,7 @@ const AllUsers = () => {
 
       <SectionTitle heading={'Manage All Users'} subHeading={'How Many ??'} />
 
-      <div className="px-5 md:px-20 lg:px-32 mt-10 md:mt-16">
+      <div className="px-5 md:px-20 lg:px-32 my-10 md:mt-16">
         <div className="bg-white p-8">
           <p className="text-xl font-semibold uppercase mb-5">Total Users: {users.length}</p>
           <div>

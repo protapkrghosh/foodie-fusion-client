@@ -19,7 +19,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${item._id}`, {
+        fetch(`https://foodiefusionserver.vercel.app/carts/${item._id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())
@@ -46,7 +46,7 @@ const MyCart = () => {
       <SectionTitle heading={'Wanna Add more?'} subHeading={'My Cart'} />
 
       {/* Table */}
-      <div className="px-5 md:px-20 lg:px-32 mt-10 md:mt-16">
+      <div className="px-5 md:px-20 lg:px-32 my-10 md:mt-16">
         <div className="bg-white p-8">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-xl font-semibold uppercase">Total Cart: {cart.length}</h3>

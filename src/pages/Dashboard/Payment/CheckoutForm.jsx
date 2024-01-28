@@ -16,11 +16,13 @@ const CheckoutForm = ({ cart, price }) => {
   const [transactionId, setTransactionId] = useState('');
 
   useEffect(() => {
-    axiosSecure.post('/create-payment-intent', { price })
-      .then(res => {
-        // console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      })
+    if (price > 0) {
+      axiosSecure.post('/create-payment-intent', { price })
+        .then(res => {
+          setClientSecret(res.data.clientSecret);
+          // console.log(res.data.clientSecret);
+        })
+    }
   }, [price, axiosSecure])
 
   const handleSubmit = async (event) => {
@@ -75,16 +77,21 @@ const CheckoutForm = ({ cart, price }) => {
       // Save payment information to the server
       const payment = {
         name: user?.displayName,
+        email: user?.email,
         transactionId: paymentIntent.id,
         price,
+        data: new Date(),
         quantity: cart.length,
-        items: cart.map(item => item._id),
+        status: 'Service pending',
+        cartItems: cart.map(item => item._id),
+        menuItems: cart.map(item => item.menuItemId),
         itemNames: cart.map(item => item.name),
       }
+
       axiosSecure.post('/payments', payment)
         .then(res => {
           console.log(res.data);
-          if (res.data.insertedId) {
+          if (res.data.result.insertedId) {
             // toast.success('Display confirm')
           }
         })
