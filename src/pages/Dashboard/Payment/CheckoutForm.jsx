@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe, } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
 import { useAuth } from "../../../hooks/useAuth";
+import { GiLog } from "react-icons/gi";
 
 const CheckoutForm = ({ price }) => {
   const stripe = useStripe();
@@ -10,6 +11,8 @@ const CheckoutForm = ({ price }) => {
   const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState('');
   const [clientSecret, setClientSecret] = useState('');
+  const [processing, setProcessing] = useState(false);
+  const [transactionId, setTransactionId] = useState('');
 
   useEffect(() => {
     axiosSecure.post('/create-payment-intent', { price })
@@ -40,7 +43,10 @@ const CheckoutForm = ({ price }) => {
     }
     else {
       setCardError('');
+      // console.log('Payment method', paymentMethod)
     }
+
+    setProcessing(true);
 
     const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
       clientSecret,
@@ -58,7 +64,14 @@ const CheckoutForm = ({ price }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log(paymentIntent);
+
+    // console.log('Payment Intent', paymentIntent);
+    setProcessing(false);
+
+    if (paymentIntent.status === 'succeeded') {
+      setTransactionId(paymentIntent.id);
+      
+    }
   }
 
   return (
@@ -82,13 +95,14 @@ const CheckoutForm = ({ price }) => {
         />
 
         <div className="flex justify-center mt-10">
-          <button type="submit" disabled={!stripe || !clientSecret} className="font-semibold bg-[#D1A054] hover:bg-[#B98D4A] px-16 py-2 rounded-md duration-200">
+          <button type="submit" disabled={!stripe || !clientSecret || processing} className="font-semibold bg-[#D1A054] hover:bg-[#B98D4A] px-16 py-2 rounded-md duration-200">
             Pay
           </button>
         </div>
       </form>
 
       {cardError && <p className="text-rose-600 text-sm mt-5">{cardError}</p>}
+      {transactionId && <p className="text-green-600 text-sm mt-5">Transaction complete with transactionId: {transactionId}</p>}
     </>
   );
 };
