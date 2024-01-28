@@ -1,10 +1,23 @@
 import { CardElement, useElements, useStripe, } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
+import { useAuth } from "../../../hooks/useAuth";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useAuth();
+  const [axiosSecure] = useAxiosSecure();
   const [cardError, setCardError] = useState('');
+  const [clientSecret, setClientSecret] = useState('');
+
+  useEffect(() => {
+    axiosSecure.post('/create-payment-intent', { price })
+      .then(res => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      })
+  }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,6 +41,24 @@ const CheckoutForm = () => {
     else {
       setCardError('');
     }
+
+    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+      clientSecret,
+      {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || 'anonymous',
+            email: user?.email || 'unknown'
+          },
+        },
+      },
+    );
+
+    if (confirmError) {
+      console.log(confirmError);
+    }
+    console.log(paymentIntent);
   }
 
   return (
@@ -50,13 +81,14 @@ const CheckoutForm = () => {
           }}
         />
 
-        {cardError && <p className="text-rose-600 text-sm mt-5">{cardError}</p>}
         <div className="flex justify-center mt-10">
-          <button type="submit" disabled={!stripe} className="font-semibold bg-[#D1A054] hover:bg-[#B98D4A] px-16 py-2 rounded-md duration-200">
+          <button type="submit" disabled={!stripe || !clientSecret} className="font-semibold bg-[#D1A054] hover:bg-[#B98D4A] px-16 py-2 rounded-md duration-200">
             Pay
           </button>
         </div>
       </form>
+
+      {cardError && <p className="text-rose-600 text-sm mt-5">{cardError}</p>}
     </>
   );
 };

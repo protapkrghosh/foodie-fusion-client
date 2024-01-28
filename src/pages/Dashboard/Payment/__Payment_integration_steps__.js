@@ -7,4 +7,9 @@
  * 6. Use test card to test payment
  * 7. On the server side: install stripe: (npm install --save stripe)
  * 8. Create a payment intent API with payment method types: ['card']. Make sure you provide amount in cents (multiply price with 100)
+ * 9. Call payment intent API to get client secret and store it in a state
+ * 10. Use confirmCardPayment API with client secret card info
+ * 11. Display confirm card error and success message
+ * 12. Do things after payment -->
+ * 13. 
  */
