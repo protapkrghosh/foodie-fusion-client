@@ -9,6 +9,7 @@ import { useCart } from "../hooks/useCart";
 import { ImSpoonKnife } from "react-icons/im";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { useAdmin } from "../hooks/useAdmin";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const [cart] = useCart();
@@ -18,6 +19,10 @@ const Dashboard = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Dashboard | Foodie Fusion Restaurant</title>
+      </Helmet>
+
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
