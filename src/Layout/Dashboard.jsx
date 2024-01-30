@@ -38,7 +38,7 @@ const Dashboard = () => {
             {
               isAdmin ? <>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> Admin Home</NavLink>
+                  <NavLink to='/dashboard/admin-home'><IoHome className="text-[18px]" /> Admin Home</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/add-items'><ImSpoonKnife className="text-[20px]" />Add a Item</NavLink>
@@ -55,7 +55,7 @@ const Dashboard = () => {
                 </li>
               </> : <>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> User Home</NavLink>
+                  <NavLink to='/dashboard/user-home'><IoHome className="text-[18px]" /> User Home</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/payment'><FaCalendarAlt className="text-[18px]" />Reservation</NavLink>
