@@ -21,12 +21,15 @@ const NavBar = () => {
     <li><Link to="/menu">Our Menu</Link></li>
     <li><Link to="/order/salad">Our Shop</Link></li>
     <li><Link to={isAdmin ? '/dashboard/admin-home' : '/dashboard/user-home'}>Dashboard</Link></li>
-    <li className="relative">
-      <Link to="/dashboard/my-cart">
-        <FaShoppingCart className="text-2xl" />
-        <div className="flex justify-center items-center font-semibold h-6 w-6 bg-[#e6af5d] border-none text-black rounded-full absolute left-8 -top-1">{cart?.length || 0}</div>
-      </Link>
-    </li>
+    {
+      isAdmin ? ''
+        : <li className="relative">
+          <Link to="/dashboard/my-cart">
+            <FaShoppingCart className="text-2xl" />
+            <div className="flex justify-center items-center font-semibold h-6 w-6 bg-[#e6af5d] border-none text-black rounded-full absolute left-8 -top-1">{cart?.length || 0}</div>
+          </Link>
+        </li>
+    }
 
     {
       user ? <>
