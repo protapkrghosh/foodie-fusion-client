@@ -88,10 +88,10 @@ const Dashboard = () => {
               <NavLink to='/'><IoHome className="text-[18px]" /> Home</NavLink>
             </li>
             <li className="uppercase">
-              <NavLink to='/dashboard/menu'><IoMenu className="text-[21px]" /> Menu</NavLink>
+              <NavLink to='/menu'><IoMenu className="text-[21px]" /> Menu</NavLink>
             </li>
             <li className="uppercase">
-              <NavLink to='/dashboard/shop'><GiShoppingBag className="text-[19px]" /> Shop</NavLink>
+              <NavLink to='/order/salad'><GiShoppingBag className="text-[19px]" /> Shop</NavLink>
             </li>
             <li className="uppercase">
               <NavLink to='/dashboard/contact'><MdEmail className="text-[18px]" /> Contact</NavLink>

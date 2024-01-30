@@ -5,12 +5,12 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../../../hooks/useAuth";
 import { useAxiosSecure } from "../../../hooks/useAxiosSecure";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, PieChart, Pie, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, PieChart, Pie, ResponsiveContainer, Legend } from 'recharts';
 
 const AdminHome = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
-  const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
+  const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8900f2', 'pink'];
 
   const { data: stats = {} } = useQuery({
     queryKey: ['admin-stats'],
@@ -57,7 +57,7 @@ const AdminHome = () => {
   };
 
   return (
-    <div className="w-full mx-auto bg-[#F6F6F6] min-h-screen pt-5 md:pt-10 px-5 md:px-14">
+    <div className="w-full mx-auto bg-[#F6F6F6] min-h-screen pt-5 md:pt-10 px-5 md:px-10">
       <h2 className="text-2xl font-semibold capitalize">Hi {user?.displayName}, Welcome Back!</h2>
 
       {/* Stats Card */}
@@ -65,7 +65,7 @@ const AdminHome = () => {
         <div className="flex justify-center p-4 text-white items-center bg-gradient-to-r from-[#bb34f5] to-[#edcff0] rounded-md">
           <GiWallet className="text-[32px] mr-3" />
           <div>
-            <p className="text-center text-3xl font-bold">${stats.revenue}</p>
+            <p className="text-center text-3xl font-bold">${parseFloat(stats.revenue).toFixed(2)}</p>
             <p className="text-xl">Revenue</p>
           </div>
         </div>
@@ -96,11 +96,11 @@ const AdminHome = () => {
       </div>
 
       {/* Bar and Pie chart */}
-      <div className="md:flex gap-5 md:gap-x-20 mt-10 bg-white py-2">
+      <div className="lg:flex gap-5 md:gap-x-20 mt-10 bg-white py-2">
         {/* Bar Chart */}
-        <div className="w-1/2">
+        <div className="md:w-1/2 mx-auto">
           <BarChart
-            width={600}
+            width={550}
             height={400}
             data={chartData}
             margin={{
@@ -122,9 +122,10 @@ const AdminHome = () => {
         </div>
 
         {/* Pie Chart */}
-        <div className="w-1/2">
+        <div className="w-1/2 mx-auto">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart width={500} height={500}>
+              <Legend />
               <Pie
                 data={chartData}
                 cx="60%"
@@ -136,7 +137,7 @@ const AdminHome = () => {
                 dataKey="count"
               >
                 {chartData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                  <Cell name={entry.category} key={`cell-${index}`} fill={colors[index % colors.length]} />
                 ))}
               </Pie>
             </PieChart>
