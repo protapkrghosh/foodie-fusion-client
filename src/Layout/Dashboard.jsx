@@ -9,6 +9,7 @@ import { useCart } from "../hooks/useCart";
 import { ImSpoonKnife } from "react-icons/im";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { useAdmin } from "../hooks/useAdmin";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const [cart] = useCart();
@@ -18,6 +19,10 @@ const Dashboard = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Dashboard | Foodie Fusion Restaurant</title>
+      </Helmet>
+
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
@@ -38,7 +43,7 @@ const Dashboard = () => {
             {
               isAdmin ? <>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> Admin Home</NavLink>
+                  <NavLink to='/dashboard/admin-home'><IoHome className="text-[18px]" /> Admin Home</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/add-items'><ImSpoonKnife className="text-[20px]" />Add a Item</NavLink>
@@ -55,7 +60,7 @@ const Dashboard = () => {
                 </li>
               </> : <>
                 <li className="uppercase">
-                  <NavLink to='/dashboard/home'><IoHome className="text-[18px]" /> User Home</NavLink>
+                  <NavLink to='/dashboard/user-home'><IoHome className="text-[18px]" /> User Home</NavLink>
                 </li>
                 <li className="uppercase">
                   <NavLink to='/dashboard/payment'><FaCalendarAlt className="text-[18px]" />Reservation</NavLink>
@@ -83,10 +88,10 @@ const Dashboard = () => {
               <NavLink to='/'><IoHome className="text-[18px]" /> Home</NavLink>
             </li>
             <li className="uppercase">
-              <NavLink to='/dashboard/menu'><IoMenu className="text-[21px]" /> Menu</NavLink>
+              <NavLink to='/menu'><IoMenu className="text-[21px]" /> Menu</NavLink>
             </li>
             <li className="uppercase">
-              <NavLink to='/dashboard/shop'><GiShoppingBag className="text-[19px]" /> Shop</NavLink>
+              <NavLink to='/order/salad'><GiShoppingBag className="text-[19px]" /> Shop</NavLink>
             </li>
             <li className="uppercase">
               <NavLink to='/dashboard/contact'><MdEmail className="text-[18px]" /> Contact</NavLink>
