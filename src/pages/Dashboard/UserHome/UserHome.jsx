@@ -41,7 +41,7 @@ const UserHome = () => {
 
       <div className="md:flex justify-center mt-8">
         <div className="bg-[#f8e6ce] md:w-1/2 h-72 md:h-96 flex flex-col justify-center items-center md:border-r-2 border-[#d4a35983]">
-          <img src={user?.photoURL} alt="Image" className="w-32 h-32 rounded-full border-4 border-[#c5b7a491]" />
+          <img src={user?.photoURL} alt="Image" className="w-36 h-36 rounded-full border-4 border-[#c5b7a491]" />
           <p className="text-xl font-semibold capitalize mt-6">{user?.displayName}</p>
         </div>
 
