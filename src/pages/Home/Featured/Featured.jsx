@@ -1,5 +1,6 @@
 import img from "../../../assets/home/featured.jpg"
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { Link } from 'react-router-dom';
 
 const Featured = () => {
   return (
@@ -18,7 +19,7 @@ const Featured = () => {
             <p>March 20, {new Date().getFullYear()}</p>
             <p className="text-2xl uppercase">Where can i get some?</p>
             <p>Consectetur adipisicing elit. Odio quibusdam, earum eaque nesciunt quisquam modi est ratione dicta veritatis magnam sunt natus exercitationem, dolore consectetur assumenda commodi nam, eligendi provident!</p>
-            <button className="btn btn-outline border-0 border-b-2 text-white mt-8">Read more</button>
+            <Link to='/menu' className="btn btn-outline border-0 border-b-2 text-white mt-8">Read more</Link>
           </div>
         </div>
       </div>
