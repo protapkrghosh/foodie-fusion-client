@@ -17,10 +17,10 @@ const Footer = () => {
         <div className="bg-[#111827] text-white p-10 text-center space-y-2">
           <h3 className="text-2xl font-bold">Follow US</h3>
           <p>Join us on social media</p>
-          <div className="text-xl flex justify-center items-center space-x-5">
-            <a href=""><FaFacebookF /></a>
-            <a href=""><FaInstagram /></a>
-            <a href=""><FaTwitter /></a>
+          <div className="text-xl flex justify-center items-center space-x-3">
+            <a href="" className="hover:bg-[#263242] p-3 rounded-full duration-300"><FaFacebookF /></a>
+            <a href="" className="hover:bg-[#263242] p-3 rounded-full duration-300"><FaInstagram /></a>
+            <a href="" className="hover:bg-[#263242] p-3 rounded-full duration-300"><FaTwitter /></a>
           </div>
         </div>
       </div>
