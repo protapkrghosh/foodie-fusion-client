@@ -65,7 +65,7 @@ const AdminHome = () => {
         <div className="flex justify-center p-4 text-white items-center bg-gradient-to-r from-[#bb34f5] to-[#edcff0] rounded-md">
           <GiWallet className="text-[32px] mr-3" />
           <div>
-            <p className="text-center text-3xl font-bold">${parseFloat(stats.revenue).toFixed(2)}</p>
+            <p className="text-3xl font-bold">${parseFloat(stats.revenue).toFixed(2)}</p>
             <p className="text-xl">Revenue</p>
           </div>
         </div>
@@ -73,7 +73,7 @@ const AdminHome = () => {
         <div className="flex justify-center p-4 text-white items-center bg-gradient-to-r from-[#D3A256] to-[#f3ddb6] rounded-md">
           <FaUsers className="text-[32px] mr-3" />
           <div>
-            <p className="text-center text-3xl font-bold">{stats.users}</p>
+            <p className="text-3xl font-bold">{stats.users}</p>
             <p className="text-xl">Customers</p>
           </div>
         </div>
@@ -81,7 +81,7 @@ const AdminHome = () => {
         <div className="flex justify-center p-4 text-white items-center bg-gradient-to-r from-[#FE4880] to-[#f1c2dd] rounded-md">
           <IoFastFoodSharp className="text-[32px] mr-3" />
           <div>
-            <p className="text-center text-3xl font-bold">{stats.products}</p>
+            <p className="text-3xl font-bold">{stats.products}</p>
             <p className="text-xl">Menu Items</p>
           </div>
         </div>
@@ -89,7 +89,7 @@ const AdminHome = () => {
         <div className="flex justify-center p-4 text-white items-center bg-gradient-to-r from-[#6AAEFF] to-[#b0eef7] rounded-md">
           <CiDeliveryTruck className="text-[37px] mr-3" />
           <div>
-            <p className="text-center text-3xl font-bold">{stats.orders}</p>
+            <p className="text-3xl font-bold">{stats.orders}</p>
             <p className="text-xl">Orders</p>
           </div>
         </div>
