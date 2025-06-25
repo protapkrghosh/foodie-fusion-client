@@ -1,6 +1,6 @@
 # 🌮 Foodie Fusion
 
-![Foodie Fusion Screenshot](https://i.ibb.co/7tJcktBD/Screesnshot.png)
+![https://foodiefusions.vercel.app](https://i.ibb.co/7tJcktBD/Screesnshot.png)
 
 ## 📝 Project Overview
 
